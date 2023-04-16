@@ -10,6 +10,7 @@ connectDB();
 
 // routes
 const goalRoutes = require("./routes/goalRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 //Middlewares
 const { errorHandler } = require("./middleware/errorHandlerMiddleware");
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/v1/goals", goalRoutes);
+app.use("/v1/users", userRoutes);
 
 app.use(errorHandler);
 
