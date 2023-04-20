@@ -1,0 +1,19 @@
+.custom-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+
+    text-decoration: none;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    background-color: grey;
+    cursor: pointer;
+    &:hover{
+        color: black;
+        background-color:grey
+    }
+  }
+}
