@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { reset, register } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./Register.scss";
 import Input from "../../components/Input/Input";
 import CustomButton from "../../components/CustomButton/CustomButton";
@@ -16,14 +20,36 @@ const Register = () => {
 
   const { name, email, password, confirmPassword } = formValue;
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isSuccess, isError, message } = useSelector(
+    (store) => store.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess && user) {
+      navigate('/')
+      toast.success("User registered successfully");
+    }
+  }, [user, isError, message, isSuccess, dispatch, navigate]);
   const handleSubmit = (e) => {
     if (name) e.preventDefault();
     if (password !== confirmPassword) {
-      setError("Password does not match with Confirm Password");
-      return;
+      setError("Password does not match");
+          } else {
+      const user = {
+        name,
+        email,
+        password,
+      };
+      dispatch(register(user));
+      setFormValue(initialFormValue);
     }
-    console.log("Submit", formValue);
-    setFormValue(initialFormValue);
   };
 
   const onChange = (e) => {
