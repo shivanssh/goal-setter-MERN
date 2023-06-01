@@ -33,15 +33,17 @@ const Register = () => {
     }
 
     if (isSuccess && user) {
-      navigate('/')
+      navigate("/");
+      dispatch(reset())
       toast.success("User registered successfully");
     }
   }, [user, isError, message, isSuccess, dispatch, navigate]);
+
   const handleSubmit = (e) => {
-    if (name) e.preventDefault();
+    e.preventDefault();
     if (password !== confirmPassword) {
       setError("Password does not match");
-          } else {
+    } else {
       const user = {
         name,
         email,
@@ -59,6 +61,10 @@ const Register = () => {
       [e.target?.name]: e.target?.value,
     }));
   };
+
+  if (isLoading) {
+    return <p className="loader">Loading......</p>;
+  }
 
   return (
     <div className="register">

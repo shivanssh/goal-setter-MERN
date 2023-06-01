@@ -17,7 +17,7 @@ const App = () => (
       <Route path="/register" element={<Register />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
-    {/* <ToastContainer /> */}
+    <ToastContainer />
   </div>
 );
 

@@ -17,7 +17,24 @@ section {
   width: 100%;
 }
 
-.error{
+.error {
   color: #bd0f0f;
   margin: 5px;
+}
+
+.btn {
+  padding: 5px 10px;
+  font-weight: 500;
+  font-size: 16px;
+  background-color: #777;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.loader {
+  color: #777;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
 }

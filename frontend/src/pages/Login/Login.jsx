@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaSignInAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { reset, login } from "../../features/auth/authSlice";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import CustomButton from "../../components/CustomButton/CustomButton";
+
 import "./Login.scss";
 
 const Login = () => {
@@ -9,13 +14,33 @@ const Login = () => {
     email: "",
     password: "",
   };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { user, isLoading, isSuccess, isError, message } = useSelector(
+    (store) => store.auth
+  );
+
   const [formValue, setFormValue] = useState(initialFormValue);
 
   const { email, password } = formValue;
 
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess && user) {
+      navigate("/");
+      dispatch(reset());
+      toast.success("User Logged-In successfully");
+    }
+  }, [user, isError, message, isSuccess, dispatch, navigate]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submit", formValue);
+    dispatch(login(formValue));
     setFormValue(initialFormValue);
   };
 
@@ -25,6 +50,10 @@ const Login = () => {
       [e.target?.name]: e.target?.value,
     }));
   };
+
+  if (isLoading) {
+    return <div className="loader">Loading....</div>;
+  }
 
   return (
     <div className="register">
