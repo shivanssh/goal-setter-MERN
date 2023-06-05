@@ -4,7 +4,6 @@
   justify-content: center;
 
   button {
-
     text-decoration: none;
     border: none;
     color: white;
@@ -14,6 +13,10 @@
     &:hover{
         color: black;
         background-color:grey
+    }
+
+    &:disabled{
+      cursor: not-allowed;
     }
   }
 }

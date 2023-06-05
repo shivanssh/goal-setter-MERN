@@ -1,9 +1,11 @@
 import "./CustomButton.scss";
 
-const CustomButton = ({ type, label }) => {
+const CustomButton = ({ type, label, ...other }) => {
   return (
     <div className="custom-button">
-      <button type={type}>{label}</button>
+      <button type={type} {...other}>
+        {label}
+      </button>
     </div>
   );
 };
