@@ -16,6 +16,8 @@ function Popup({
   buttonLabel,
   onClick,
   onChange,
+  placeholder = "",
+  disabled,
 }) {
   if (!isShowModal) return null;
   return (
@@ -27,10 +29,16 @@ function Popup({
             id="text"
             name="text"
             onChange={(e) => onChange(e.target.value)}
+            placeholder={placeholder}
           />
         </section>
         <div className="pop-buttons">
-          <CustomButton label={buttonLabel} type="button" onClick={onClick} />
+          <CustomButton
+            label={buttonLabel}
+            type="button"
+            onClick={onClick}
+            disabled={disabled}
+          />
           <CustomButton label="Cancel" type="button" onClick={onClose} />
         </div>
       </div>

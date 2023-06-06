@@ -10,9 +10,10 @@ import {
 } from "../../features/goals/goalsSlice";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import GoalsForm from "../GoalsForm/GoalsForm";
+import Popup from "../../components/Popup/Popup";
+import Spinner from "../../components/Spinner/Spinner";
 
 import "./Dashboard.scss";
-import Popup from "../../components/Popup/Popup";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(message, "---err");
+      console.log(message);
     }
 
     if (!user) {
@@ -46,7 +47,7 @@ const Dashboard = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
 
   const handleEdit = (id) => {
@@ -82,6 +83,8 @@ const Dashboard = () => {
     </section>
   );
 
+  const currentGoal = goals.find((item) => item._id === currentId);
+
   return (
     <main className="dashboard-container">
       <Popup
@@ -91,6 +94,8 @@ const Dashboard = () => {
         buttonLabel="Update"
         onClick={handleUpdate}
         onChange={handleChange}
+        placeholder={currentGoal?.text}
+        disabled={!updatedText}
       />
       <section>
         <h1>Welcome {user?.data?.name || "Customer"}</h1>

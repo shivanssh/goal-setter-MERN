@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addGoal } from "../../features/goals/goalsSlice";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import Input from "../../components/Input/Input";
+import Spinner from "../../components/Spinner/Spinner";
 
 import "./GoalsForm.scss";
 
@@ -34,7 +35,7 @@ function GoalsForm() {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Spinner />;
   }
   return (
     <section className="form">

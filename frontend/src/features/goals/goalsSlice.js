@@ -40,7 +40,6 @@ export const getGoals = createAsyncThunk(
 export const updateGoal = createAsyncThunk(
   "goals/updateGoal",
   async (updatedGoal, thunkAPI) => {
-    console.log(updatedGoal, thunkAPI);
     try {
 
       const token = thunkAPI.getState().auth.user.data.token;

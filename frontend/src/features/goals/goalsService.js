@@ -39,9 +39,7 @@ const updateGoal = async (id, updatedGoal, token) => {
       Authorization: `Bearer ${token}`,
     },
   };
-  console.log(id,'p---id')
   const response = await axios.put(`${API_URL}/${id}`, updatedGoal, config);
-  console.log(response);
   return response.data;
 };
 

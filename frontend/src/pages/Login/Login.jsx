@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { FaSignInAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { reset, login } from "../../features/auth/authSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { reset, login } from "../../features/auth/authSlice";
 import Input from "../../components/Input/Input";
 import CustomButton from "../../components/CustomButton/CustomButton";
+import Spinner from "../../components/Spinner/Spinner";
 
 import "./Login.scss";
 
@@ -52,7 +53,7 @@ const Login = () => {
   };
 
   if (isLoading) {
-    return <div className="loader">Loading....</div>;
+    return <Spinner />;
   }
 
   return (

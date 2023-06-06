@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-import { reset, register } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import "./Register.scss";
+import { reset, register } from "../../features/auth/authSlice";
 import Input from "../../components/Input/Input";
 import CustomButton from "../../components/CustomButton/CustomButton";
+import Spinner from "../../components/Spinner/Spinner";
+
+import "./Register.scss";
 
 const Register = () => {
   const initialFormValue = {
@@ -34,7 +36,7 @@ const Register = () => {
 
     if (isSuccess && user) {
       navigate("/");
-      dispatch(reset())
+      dispatch(reset());
       toast.success("User registered successfully");
     }
   }, [user, isError, message, isSuccess, dispatch, navigate]);
@@ -63,7 +65,7 @@ const Register = () => {
   };
 
   if (isLoading) {
-    return <p className="loader">Loading......</p>;
+    return <Spinner />;
   }
 
   return (

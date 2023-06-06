@@ -17,7 +17,6 @@ section {
   width: 100%;
 }
 
-
 .error {
   color: #bd0f0f;
   margin: 5px;
@@ -38,4 +37,8 @@ section {
   font-weight: 500;
   font-size: 16px;
   text-align: center;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
