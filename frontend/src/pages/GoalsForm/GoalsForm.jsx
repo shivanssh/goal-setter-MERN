@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addGoal } from "../../features/goals/goalsSlice";
 import CustomButton from "../../components/CustomButton/CustomButton";
@@ -18,12 +17,8 @@ function GoalsForm() {
 
   useEffect(() => {
     if (isError) {
-      toast(message);
+      console.log(message)
     }
-
-    // if (isSuccess) {
-    //   toast("Goal added successfully");
-    // }
 
     return () => {};
   }, [dispatch, isError, isSuccess, message]);

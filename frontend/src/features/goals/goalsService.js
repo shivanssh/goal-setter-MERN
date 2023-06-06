@@ -29,7 +29,7 @@ const getGoals = async (token) => {
   };
 
   const response = await axios.get(API_URL, config);
-  return response.data.data;
+  return response?.data?.data;
 };
 
 // Update goal
